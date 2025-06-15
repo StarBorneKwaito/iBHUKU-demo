@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iBHUKU | Stock In Management</title>
+    <link rel="stylesheet" href="stock-in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modal Styles - identical to stock-out */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.35);
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+    backdrop-filter: blur(2px);
+}
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.25s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.modal-content {
+    position: relative;
+    background: var(--lighter) !important;
+    color: var(--secondary) !important;
+    border-radius: 14px;
+    box-shadow: none;
+    border: 1.5px solid var(--primary);
+    padding: 2.5rem 2rem 2rem 2rem;
+    min-width: 340px;
+    max-width: 98vw;
+    width: 100%;
+    animation: modalPop 0.25s;
+    box-sizing: border-box;
+}
+@keyframes modalPop {
+    from { transform: scale(0.96) translateY(30px); opacity: 0; }
+    to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+.close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 1.7rem;
+    color: var(--secondary-lighter);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.2s;
+    z-index: 10;
+    line-height: 1;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--primary-dark);
+    outline: none;
+}
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+.modal-header h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 0;
+}
+.modal-body {
+    padding: 0;
+}
+.form-group {
+    margin-bottom: 1.1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 500;
+    color: var(--secondary);
+    letter-spacing: 0.01em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.55rem 0.9rem;
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--light);
+    color: var(--secondary);
+    transition: border 0.2s, box-shadow 0.2s;
+    outline: none;
+    box-shadow: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(212,175,55,0.08);
+}
+.form-group textarea {
+    min-height: 48px;
+    resize: vertical;
+}
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 1.5rem;
+        min-width: unset;
+    }
+    .close-btn {
+        top: 0.8rem;
+        right: 1rem;
+        font-size: 1.5rem;
+    }
+    .modal-header h2 {
+        font-size: 1.2rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="branding">
+                <i class="fas fa-building"></i>
+                <h1>iBHUKU | Stock In Management</h1>
+            </div>
+            <div class="user-controls">
+                <span class="username">Admin</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <!-- Sidebar Navigation -->
+            <nav class="app-sidebar">
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li class="active"><a href="#"><i class="fas fa-sign-in-alt"></i> Stock In</a></li>
+                    <li><a href="stock-out.html"><i class="fas fa-sign-out-alt"></i> Stock Out</a></li>
+                    <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>   
+                    <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="app-main">
+                <div class="page-controls">
+                    <h2>Stock In Transactions</h2>
+                    <button id="openStockInModal" class="btn primary">
+                        <i class="fas fa-plus"></i> New Stock In
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-container">
+                        <table class="stock-in-table">
+                            <thead>
+                                <tr>
+                                    <th>Date/Time</th>
+                                    <th>Material</th>
+                                    <th>Qty In</th>
+                                    <th>Supplier / Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15/06/23 11:30</td>
+                                    <td>Cement (50kg bags)</td>
+                                    <td>20 bags</td>
+                                    <td><strong>Supplier:</strong> BuildCo | <strong>Ref:</strong> INV-2023-021</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Stock In Modal -->
+    <div id="stockInModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Stock In - New Entry</h2>
+                <button type="button" class="close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-divider"></div>
+            <div class="modal-body">
+                <form id="stockInForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="material">Material</label>
+                            <select id="material" required>
+                                <option value="">Select Material</option>
+                                <option value="1001">Cement (50kg bags)</option>
+                                <option value="1002">Roofing Sheets</option>
+                                <option value="1003">Bricks (Standard)</option>
+                                <option value="1004">PVC Pipes (50mm)</option>
+                                <option value="1005">Window Frames</option>
+                                <option value="1006">Steel Bars (10mm)</option>
+                                <option value="1007">Sand (Fine)</option>
+                                <option value="1008">Paint (White, 5L)</option>
+                                <option value="1009">Electrical Wires</option>
+                                <option value="1010">Ceramic Tiles</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="supplier">Supplier</label>
+                            <input type="text" id="supplier" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reference">Reference</label>
+                            <input type="text" id="reference" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="2"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn secondary" id="cancelEntry">Cancel</button>
+                        <button type="submit" class="btn primary">Submit Entry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Submission Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content" style="width: 350px; min-width: unset; max-width: 95vw;">
+            <div class="modal-header">
+                <h2>Confirm Submission</h2>
+                <button type="button" class="close-btn" id="closeConfirmModal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-divider"></div>
+            <div class="modal-body" style="text-align:left;">
+                <p style="text-align:center;">Are you sure you want to submit this stock in entry?</p>
+                <div id="confirmDetails" style="margin: 1rem 0; font-size: 0.98rem;">
+                    <!-- Details will be injected here -->
+                </div>
+                <div class="form-actions" style="justify-content: center;">
+                    <button type="button" class="btn secondary" id="cancelConfirm">Cancel</button>
+                    <button type="button" class="btn primary" id="confirmSubmit">Yes, Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="stock-in.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const openBtn = document.getElementById('openStockInModal');
+    const modal = document.getElementById('stockInModal');
+    const closeBtn = modal.querySelector('.close-btn');
+    const cancelBtn = document.getElementById('cancelEntry');
+
+    if (openBtn && modal) {
+        openBtn.addEventListener('click', function() {
+            modal.classList.add('active');
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+    }
+
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+    }
+
+    // Optional: close modal when clicking outside modal-content
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+
+    // Confirm Submission Modal logic
+    const stockInForm = document.getElementById('stockInForm');
+    const confirmModal = document.getElementById('confirmModal');
+    const closeConfirmModal = document.getElementById('closeConfirmModal');
+    const cancelConfirm = document.getElementById('cancelConfirm');
+    const confirmSubmit = document.getElementById('confirmSubmit');
+    const confirmDetails = document.getElementById('confirmDetails');
+
+    if (stockInForm) {
+        stockInForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Get form values
+            const material = document.getElementById('material').selectedOptions[0].text;
+            const quantity = document.getElementById('quantity').value;
+            const supplier = document.getElementById('supplier').value;
+            const reference = document.getElementById('reference').value;
+            const notes = document.getElementById('notes').value;
+
+            // Inject details into confirmation modal
+            confirmDetails.innerHTML = `
+                <strong>Material:</strong> ${material}<br>
+                <strong>Quantity:</strong> ${quantity}<br>
+                <strong>Supplier:</strong> ${supplier}<br>
+                <strong>Reference:</strong> ${reference}<br>
+                <strong>Notes:</strong> ${notes ? notes : '<em>None</em>'}
+            `;
+
+            confirmModal.classList.add('active');
+        });
+    }
+    if (closeConfirmModal) {
+        closeConfirmModal.addEventListener('click', function() {
+            confirmModal.classList.remove('active');
+        });
+    }
+    if (cancelConfirm) {
+        cancelConfirm.addEventListener('click', function() {
+            confirmModal.classList.remove('active');
+        });
+    }
+    if (confirmSubmit) {
+        confirmSubmit.addEventListener('click', function() {
+            confirmModal.classList.remove('active');
+            modal.classList.remove('active');
+            stockInForm.reset();
+            // Optionally show a toast or success message here
+        });
+    }
+    // Optional: close confirm modal when clicking outside
+    confirmModal.addEventListener('click', function(e) {
+        if (e.target === confirmModal) {
+            confirmModal.classList.remove('active');
+        }
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iBHUKU | Help Center</title>
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="stock-in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="help-page">
+    <header class="app-header">
+        <div class="branding">
+            <i class="fas fa-book"></i>
+            <span>iBHUKU Inventory</span>
+        </div>
+        <div class="user-controls">
+            <span class="username">Admin User</span>
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </header>
+    <div class="app-body">
+        <nav class="app-sidebar">
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="stock-in.html"><i class="fas fa-sign-in-alt"></i> Stock In</a></li>
+                <li><a href="stock-out.html"><i class="fas fa-sign-out-alt"></i> Stock Out</a></li>
+                <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+                <li><a href="report.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li class="active"><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+        <main class="app-main">
+            <div class="page-header">
+                <h1 class="page-title">Help Center</h1>
+                <div class="search-help">
+                    <input type="text" placeholder="Search help articles...">
+                    <button class="btn primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+            <div class="card help-categories">
+                <h2 class="card-title"><i class="fas fa-list-alt"></i> Help Categories</h2>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </div>
+                        <h3>Stock In</h3>
+                        <p>Learn how to record incoming inventory items</p>
+                        <a href="#" class="btn secondary">View Articles</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <h3>Stock Out</h3>
+                        <p>Documentation for issuing inventory items</p>
+                        <a href="#" class="btn secondary">View Articles</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>Inventory Management</h3>
+                        <p>Managing your current stock levels</p>
+                        <a href="#" class="btn secondary">View Articles</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Reports</h3>
+                        <p>Generating and interpreting reports</p>
+                        <a href="#" class="btn secondary">View Articles</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>User Management</h3>
+                        <p>Setting up and managing user accounts</p>
+                        <a href="#" class="btn secondary">View Articles</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>System Settings</h3>
+                        <p>Configuring your inventory system</p>
+                        <a href="#" class="btn secondary">View Articles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-fire"></i> Popular Articles</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            How to add new stock items?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>To add new stock items:</p>
+                            <ol>
+                                <li>Navigate to the Stock In page</li>
+                                <li>Click the "Add New Stock" button</li>
+                                <li>Fill in the item details (name, quantity, price, etc.)</li>
+                                <li>Select the appropriate unit of measure</li>
+                                <li>Enter supplier information</li>
+                                <li>Click "Save Stock" to complete the process</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            How to generate inventory reports?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Inventory reports can be generated from the Reports section:</p>
+                            <ol>
+                                <li>Go to the Reports page</li>
+                                <li>Select the report type you need</li>
+                                <li>Choose the appropriate time period</li>
+                                <li>Apply any necessary filters</li>
+                                <li>Click "Generate Report"</li>
+                                <li>Use the "Export" button to download the report</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            How to set up low stock alerts?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="accordion-content">
+                            <p>To configure low stock notifications:</p>
+                            <ol>
+                                <li>Go to System Settings</li>
+                                <li>Select "Notification Preferences"</li>
+                                <li>Set your threshold for low stock alerts</li>
+                                <li>Choose notification methods (email, in-app, both)</li>
+                                <li>Specify which users should receive alerts</li>
+                                <li>Save your settings</li>
+                            </ol>
+                            <p>You can also set individual thresholds for specific items in the Inventory section.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card contact-support">
+                <h2 class="card-title"><i class="fas fa-headset"></i> Contact Support</h2>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Support</h3>
+                        <p>support@ibhuku.co.za</p>
+                        <p>Typically responds within 2 business hours</p>
+                        <a href="mailto:support@ibhuku.co.za" class="btn secondary">
+                            <i class="fas fa-paper-plane"></i> Send Email
+                        </a>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Phone Support</h3>
+                        <p>+27 12 345 6789</p>
+                        <p>Monday-Friday, 8:00-17:00</p>
+                        <a href="tel:+27123456789" class="btn secondary">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p>Available during business hours</p>
+                        <p>Look for the chat icon in the bottom right corner</p>
+                        <button class="btn primary" id="startChat">
+                            <i class="fas fa-comments"></i> Start Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                // Toggle this item
+                if(item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    content.style.maxHeight = null;
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    // Close all others
+                    document.querySelectorAll('.accordion-item').forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.accordion-content').style.maxHeight = null;
+                        i.querySelector('.accordion-header i').classList.remove('fa-chevron-up');
+                        i.querySelector('.accordion-header i').classList.add('fa-chevron-down');
+                    });
+                    // Open this one
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+        // Start chat button
+        document.getElementById('startChat').addEventListener('click', () => {
+            alert('Connecting you with a support agent...');
+            // In a real implementation, this would open a chat widget
+        });
+    </script>
+</body>
+</html>

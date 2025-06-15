@@ -1,0 +1,143 @@
+:root {
+    --primary: #D4AF37; /* Gold */
+    --primary-light: #FFD700;
+    --primary-dark: #B7950B;
+    --secondary: #333333; /* Dark grey */
+    --secondary-light: #555555;
+    --secondary-lighter: #777777;
+    --light: #F8F8F8;
+    --lighter: #FFFFFF;
+    --border: #E0E0E0;
+    --error: #E74C3C;
+    --success: #2ECC71;
+}
+
+/* Logout Page - Matches Existing Style */
+body.logout-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--light) 100%);
+}
+
+/* Header - Same as other pages */
+header {
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.logo i {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+/* Main Container - Consistent with other pages */
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 2rem;
+}
+
+/* Card - Same styling as inventory/stock pages */
+.logout-card {
+    background: linear-gradient(120deg, var(--lighter) 60%, var(--primary-light) 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(212, 175, 55, 0.08);
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--primary);
+}
+
+/* Icon - Using same color variables */
+.logout-icon i {
+    color: var(--primary-dark);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Typography - Consistent with other pages */
+.logout-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.logout-card p {
+    color: var(--secondary-lighter);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Buttons - Exact same styles as other pages */
+.logout-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    color: var(--lighter);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-light);
+    color: var(--lighter);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary);
+    color: var(--primary-light);
+}
+
+/* Responsive - Same breakpoints as other pages */
+@media (max-width: 480px) {
+    .logout-card {
+        padding: 1.5rem;
+    }
+    
+    .logout-actions {
+        flex-direction: column;
+    }
+    
+    .logout-actions .btn {
+        width: 100%;
+    }
+}

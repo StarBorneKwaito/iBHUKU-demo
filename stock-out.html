@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iBHUKU  |  Stock Out Management</title>
+    <link rel="stylesheet" href="stock-out.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="branding">
+                <i class="fas fa-building"></i>
+                <h1>iBHUKU  |  Stock Out Management</h1>
+            </div>
+            <div class="user-controls">
+                <span class="username">Admin</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <div class="app-body">
+            <!-- Sidebar Navigation -->
+            <nav class="app-sidebar">
+                <ul class="nav-menu">
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="stock-in.html"><i class="fas fa-sign-in-alt"></i> Stock In</a></li>
+                    <li class="active"><a href="#"><i class="fas fa-sign-out-alt"></i> Stock Out</a></li>
+                    <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+                    <li><a href="report.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                    <li><a href="help.html"><i class="fas fa-cog"></i> Help</a></li>
+                    <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="app-main">
+                <div class="page-controls">
+                    <h2>Stock Out Transactions</h2>
+                    <button id="openStockOutModal" class="btn primary">
+                        <i class="fas fa-plus"></i> New Request
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-container">
+                        <table class="stock-out-table">
+                            <thead>
+                                <tr>
+                                    <th>Date/Time</th>
+                                    <th>Material</th>
+                                    <th>Qty Out</th>
+                                    <th>Request Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sample Data Rows - 10 records -->
+                                <tr>
+                                    <td>15/06/23 10:45</td>
+                                    <td>Cement (50kg bags)</td>
+                                    <td>10 bags</td>
+                                    <td><strong>Req by:</strong> Site Manager | <strong>To:</strong> Construction Team A | <strong>Job:</strong> JOB-2023-015</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>15/06/23 09:30</td>
+                                    <td>Roofing Sheets</td>
+                                    <td>5 sheets</td>
+                                    <td><strong>Req by:</strong> Project Lead | <strong>To:</strong> Roofing Team | <strong>Job:</strong> JOB-2023-014</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>14/06/23 14:15</td>
+                                    <td>Bricks (Standard)</td>
+                                    <td>500 units</td>
+                                    <td><strong>Req by:</strong> Foreman | <strong>To:</strong> Masonry Team | <strong>Job:</strong> JOB-2023-013</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>14/06/23 11:00</td>
+                                    <td>PVC Pipes (50mm)</td>
+                                    <td>3 lengths</td>
+                                    <td><strong>Req by:</strong> Plumbing Sup | <strong>To:</strong> Plumbing Team | <strong>Job:</strong> JOB-2023-012</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>13/06/23 16:30</td>
+                                    <td>Window Frames</td>
+                                    <td>8 units</td>
+                                    <td><strong>Req by:</strong> Site Manager | <strong>To:</strong> Install Team | <strong>Job:</strong> JOB-2023-011</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>13/06/23 10:15</td>
+                                    <td>Steel Bars (10mm)</td>
+                                    <td>25 lengths</td>
+                                    <td><strong>Req by:</strong> Const. Lead | <strong>To:</strong> Steel Team | <strong>Job:</strong> JOB-2023-010</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>12/06/23 15:45</td>
+                                    <td>Sand (Fine)</td>
+                                    <td>2 tons</td>
+                                    <td><strong>Req by:</strong> Masonry Sup | <strong>To:</strong> Masonry Team B | <strong>Job:</strong> JOB-2023-009</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>12/06/23 08:20</td>
+                                    <td>Paint (White, 5L)</td>
+                                    <td>6 tins</td>
+                                    <td><strong>Req by:</strong> Painting Sup | <strong>To:</strong> Painting Team | <strong>Job:</strong> JOB-2023-008</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>11/06/23 13:10</td>
+                                    <td>Electrical Wires</td>
+                                    <td>15 rolls</td>
+                                    <td><strong>Req by:</strong> Elec. Engineer | <strong>To:</strong> Elec. Team | <strong>Job:</strong> JOB-2023-007</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>11/06/23 09:05</td>
+                                    <td>Ceramic Tiles</td>
+                                    <td>120 boxes</td>
+                                    <td><strong>Req by:</strong> Tiling Sup | <strong>To:</strong> Tiling Team | <strong>Job:</strong> JOB-2023-006</td>
+                                    <td class="actions">
+                                        <button class="icon-btn edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="icon-btn print" title="Print"><i class="fas fa-print"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- New Request Modal -->
+        <div id="requestModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Stock Out - New Request</h2>
+                    <span class="close-btn" id="closeStockOutModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="stockOutForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="material">Material</label>
+                                <select id="material" required>
+                                    <option value="">Select Material</option>
+                                    <option value="1001">Cement (50kg bags) - Stock: 90</option>
+                                    <option value="1002">Roofing Sheets - Stock: 20</option>
+                                    <option value="1003">Bricks (Standard) - Stock: 4500</option>
+                                    <option value="1004">PVC Pipes (50mm) - Stock: 27</option>
+                                    <option value="1005">Window Frames - Stock: 12</option>
+                                    <option value="1006">Steel Bars (10mm) - Stock: 75</option>
+                                    <option value="1007">Sand (Fine) - Stock: 8 tons</option>
+                                    <option value="1008">Paint (White, 5L) - Stock: 24</option>
+                                    <option value="1009">Electrical Wires - Stock: 35</option>
+                                    <option value="1010">Ceramic Tiles - Stock: 180</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" id="quantity" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="requestedBy">Requested By</label>
+                                <input type="text" id="requestedBy" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="issuedTo">Issued To</label>
+                                <input type="text" id="issuedTo" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jobReference">Job Reference</label>
+                            <input type="text" id="jobReference" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" rows="2"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn secondary" id="cancelRequest">Cancel</button>
+                            <button type="submit" class="btn primary">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Place this just before the closing </body> tag -->
+        <div class="modal" id="stockOutModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Stock Out - New Request</h2>
+                    <span class="close-btn" id="closeStockOutModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="stockOutForm">
+                        <div class="form-group">
+                            <label for="outMaterial">Material</label>
+                            <select id="outMaterial" required>
+                                <option value="">Select Material</option>
+                                <option value="1001">Cement (50kg bags)</option>
+                                <option value="1002">Roofing Sheets</option>
+                                <option value="1003">Bricks (Standard)</option>
+                                <option value="1004">PVC Pipes (50mm)</option>
+                                <option value="1005">Window Frames</option>
+                                <option value="1006">Steel Bars (10mm)</option>
+                                <option value="1007">Sand (Fine)</option>
+                                <option value="1008">Paint (White, 5L)</option>
+                                <option value="1009">Electrical Wires</option>
+                                <option value="1010">Ceramic Tiles</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="outQuantity">Quantity</label>
+                            <input type="number" id="outQuantity" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="outRequestedBy">Requested By</label>
+                            <input type="text" id="outRequestedBy" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="outIssuedTo">Issued To</label>
+                            <input type="text" id="outIssuedTo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="outJobReference">Job Reference</label>
+                            <input type="text" id="outJobReference" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="outNotes">Notes</label>
+                            <textarea id="outNotes" rows="2"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">Submit Request</button>
+                            <button type="button" class="btn secondary" id="cancelStockOutModal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmStockOutModal" class="modal">
+            <div class="modal-content" style="width: 350px; min-width: unset; max-width: 95vw;">
+                <div class="modal-header">
+                    <h2>Confirm Stock Out Request</h2>
+                    <button type="button" class="close-btn" id="closeConfirmStockOutModal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-body" style="text-align:left;">
+                    <p style="text-align:center;">Are you sure you want to submit this stock out request?</p>
+                    <div id="confirmStockOutDetails" style="margin: 1rem 0; font-size: 0.98rem;">
+                        <!-- Details will be injected here -->
+                    </div>
+                    <div class="form-actions" style="justify-content: center;">
+                        <button type="button" class="btn secondary" id="cancelConfirmStockOut">Cancel</button>
+                        <button type="button" class="btn primary" id="confirmSubmitStockOut">Yes, Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="stock-out.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const stockOutForm = document.getElementById('stockOutForm');
+    const confirmModal = document.getElementById('confirmStockOutModal');
+    const closeConfirmModal = document.getElementById('closeConfirmStockOutModal');
+    const cancelConfirm = document.getElementById('cancelConfirmStockOut');
+    const confirmSubmit = document.getElementById('confirmSubmitStockOut');
+    const confirmDetails = document.getElementById('confirmStockOutDetails');
+    const stockOutModal = document.getElementById('requestModal') || document.getElementById('stockOutModal');
+
+    if (stockOutForm) {
+        stockOutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Get form values
+            const material = stockOutForm.querySelector('select').selectedOptions[0].text;
+            const quantity = stockOutForm.querySelector('input[type="number"]').value;
+            const requestedBy = stockOutForm.querySelector('input[id$="RequestedBy"]').value;
+            const issuedTo = stockOutForm.querySelector('input[id$="IssuedTo"]').value;
+            const jobReference = stockOutForm.querySelector('input[id$="JobReference"]').value;
+            const notes = stockOutForm.querySelector('textarea').value;
+
+            // Inject details into confirmation modal
+            confirmDetails.innerHTML = `
+                <strong>Material:</strong> ${material}<br>
+                <strong>Quantity:</strong> ${quantity}<br>
+                <strong>Requested By:</strong> ${requestedBy}<br>
+                <strong>Issued To:</strong> ${issuedTo}<br>
+                <strong>Job Reference:</strong> ${jobReference}<br>
+                <strong>Notes:</strong> ${notes ? notes : '<em>None</em>'}
+            `;
+
+            confirmModal.classList.add('active');
+        });
+    }
+    if (closeConfirmModal) {
+        closeConfirmModal.addEventListener('click', function() {
+            confirmModal.classList.remove('active');
+        });
+    }
+    if (cancelConfirm) {
+        cancelConfirm.addEventListener('click', function() {
+            confirmModal.classList.remove('active');
+        });
+    }
+    if (confirmSubmit) {
+        confirmSubmit.addEventListener('click', function() {
+            confirmModal.classList.remove('active');
+            if (stockOutModal) stockOutModal.classList.remove('active');
+            stockOutForm.reset();
+            // Optionally show a toast or success message here
+        });
+    }
+    // Optional: close confirm modal when clicking outside
+    confirmModal.addEventListener('click', function(e) {
+        if (e.target === confirmModal) {
+            confirmModal.classList.remove('active');
+        }
+    });
+});
+</script>
+</body>
+</html>

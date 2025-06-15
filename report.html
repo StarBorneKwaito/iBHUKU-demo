@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iBHUKU | Reports</title>
+    <link rel="stylesheet" href="report.css">
+    <link rel="stylesheet" href="stock-in.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="report-page">
+    <header class="app-header">
+        <div class="branding">
+            <i class="fas fa-chart-line"></i>
+            <span>iBHUKU Inventory</span>
+        </div>
+        <div class="user-controls">
+            <span class="username">Admin User</span>
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </header>
+    <div class="app-body">
+        <nav class="app-sidebar">
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="stock-in.html"><i class="fas fa-sign-in-alt"></i> Stock In</a></li>
+                <li><a href="stock-out.html"><i class="fas fa-sign-out-alt"></i> Stock Out</a></li>
+                <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+                <li class="active"><a href="#"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="help.html"><i class="fas fa-question-circle"></i> Help</a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+        <main class="app-main">
+            <div class="page-header">
+                <h1 class="page-title">Inventory Reports</h1>
+                <div class="report-controls">
+                    <select class="time-period">
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Last Quarter</option>
+                        <option>Last Year</option>
+                        <option>Custom Range</option>
+                    </select>
+                    <button class="btn primary">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+            <div class="card summary-card">
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">1,248</div>
+                        <div class="stat-label">Total Items</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">R 284,950</div>
+                        <div class="stat-label">Inventory Value</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">87</div>
+                        <div class="stat-label">Low Stock</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">23</div>
+                        <div class="stat-label">Out of Stock</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2 class="card-title">Stock Movement</h2>
+                <div class="chart-container">
+                    <canvas id="movementChart"></canvas>
+                </div>
+            </div>
+            <div class="dashboard-row">
+                <div class="dashboard-card large">
+                    <h2 class="card-title">Stock Levels by Category</h2>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h2 class="card-title">Top Suppliers</h2>
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>Supplier</th>
+                                <th>Items</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Building Materials Ltd</td>
+                                <td>248</td>
+                                <td>R 58,200</td>
+                            </tr>
+                            <tr>
+                                <td>Hardware World</td>
+                                <td>187</td>
+                                <td>R 42,500</td>
+                            </tr>
+                            <tr>
+                                <td>Plumbing Supplies</td>
+                                <td>156</td>
+                                <td>R 38,750</td>
+                            </tr>
+                            <tr>
+                                <td>Electrical Wholesale</td>
+                                <td>132</td>
+                                <td>R 36,200</td>
+                            </tr>
+                            <tr>
+                                <td>Timber Merchants</td>
+                                <td>98</td>
+                                <td>R 28,400</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h2 class="card-title">Recent Stock Activity</h2>
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Item</th>
+                            <th>Type</th>
+                            <th>Qty</th>
+                            <th>Value</th>
+                            <th>User</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15 Jun 2023</td>
+                            <td>Cement (50kg)</td>
+                            <td><span class="status status-in">In</span></td>
+                            <td>100</td>
+                            <td>R 8,500</td>
+                            <td>admin</td>
+                        </tr>
+                        <tr>
+                            <td>15 Jun 2023</td>
+                            <td>Roofing Sheets</td>
+                            <td><span class="status status-in">In</span></td>
+                            <td>25</td>
+                            <td>R 8,000</td>
+                            <td>admin</td>
+                        </tr>
+                        <tr>
+                            <td>14 Jun 2023</td>
+                            <td>Bricks (Standard)</td>
+                            <td><span class="status status-in">In</span></td>
+                            <td>5000</td>
+                            <td>R 17,500</td>
+                            <td>manager</td>
+                        </tr>
+                        <tr>
+                            <td>14 Jun 2023</td>
+                            <td>PVC Pipes (50mm)</td>
+                            <td><span class="status status-out">Out</span></td>
+                            <td>30</td>
+                            <td>R 4,350</td>
+                            <td>site1</td>
+                        </tr>
+                        <tr>
+                            <td>13 Jun 2023</td>
+                            <td>Power Bank 10000mAh</td>
+                            <td><span class="status status-out">Out</span></td>
+                            <td>5</td>
+                            <td>R 1,500</td>
+                            <td>site2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Stock Movement Chart
+        const movementCtx = document.getElementById('movementChart').getContext('2d');
+        const movementChart = new Chart(movementCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Stock In',
+                        data: [120, 190, 170, 220, 180, 210],
+                        borderColor: '#2ECC71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Stock Out',
+                        data: [80, 120, 140, 160, 150, 190],
+                        borderColor: '#E74C3C',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Category Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        const categoryChart = new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Building', 'Electrical', 'Plumbing', 'Hardware', 'Safety'],
+                datasets: [{
+                    data: [35, 20, 18, 15, 12],
+                    backgroundColor: [
+                        '#D4AF37',
+                        '#3498DB',
+                        '#2ECC71',
+                        '#E74C3C',
+                        '#9B59B6'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
